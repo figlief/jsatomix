@@ -1,5 +1,7 @@
+let levelsets = require('./lib/levelsets.js')
+
 module.exports = {
-  'levelsets': require('jsatomix-levelsets'),
+  'levelsets': () => { return levelsets.get('') },
   'imagenames': require('./lib/imagenames'),
   'endpoints': require('./lib/endpoints')
 }
