@@ -26,6 +26,7 @@
   "homepage": "https://github.com/figlief/jsatomix#readme",
   "dependencies": {
     "jsatomix-levelsets": "^1.0.0",
+    "jsatomix-solutions": "^1.0.0",
     "type-of": "^2.0.1"
   },
   "devDependencies": {
