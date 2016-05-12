@@ -20,5 +20,8 @@ function gather (name) {
   )
 }
 
-let note = gather('index.js')
-console.log(note)
+fs.writeFileSync(
+  'README.md',
+  gather('index.js')
+)
+

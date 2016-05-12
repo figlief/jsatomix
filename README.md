@@ -13,10 +13,10 @@ Node v6 is required. babel and browserify will be used for browser code when I g
 `levelsets` provides two functions and a property:
 * `levelsets.get(levelsetName, levelid | index)`
   where `levelid` is a string and index is an integer. Currently index=0 is equivilent to levelid = "1" but that may change
-* `levelset.eachLevel(fn)` iterates over each level in  all levelsets and executes `fn(level)` where level is an object describing the level.
-* `levelset.all` returns an object keyed by levelset name containing all levelsets
+* `levelsets.eachLevel(fn)` iterates over each level in  all levelsets and executes `fn(level)` where level is an object describing the level.
+* `levelsets.all` returns an object keyed by levelset name containing all levelsets
 
-levelsets gives access to levelsets as imported from jsatomix-levelsets but with extra data.
+`levelsets` gives access to levelsets as imported from jsatomix-levelsets but with extra properties.
 
 extra data is:
 * level.endpoints
@@ -24,7 +24,7 @@ extra data is:
 * level.levelsetName
 
 ### Example
-```
+```js
 const jsa = require('jsatomix')
 const lvls = jsa.levelsets
 const level = lvls.get('katomic', '1')
@@ -35,8 +35,8 @@ console.log(level.name)
 ## solutions
 
 `solutions` provides access to solutions that have been collected from the kp-atomix project web site and are presented as objects.
-```
-const jsa = require('jsatomix'i
+```js
+const jsa = require('jsatomix')
 const solutions = jsa.solutions.all
 console.log(solutions[99])
 //{ uid: 'KCuHPdpg',
@@ -55,6 +55,17 @@ Many of the solutions are long winded and with lots of backtracking. It would be
 ## imagenames
 
 Given an atom-spec return a list of image names in increasing z-index order that are required to create a visual representation of an atom.
+
+```js
+const  names = require('jsatomix').imagenames
+
+console.log(names(['1', '']))
+//[ 'atom-h' ]
+
+console.log(names(['1', 'gc']))
+//[ 'bond-left', 'bond-right', 'atom-h' ]
+
+```
 ## endpoints
 `endpoints` is a module used to find space in an arena where the molecule will fit.
 
@@ -68,7 +79,7 @@ This is a crude algorithm. Improve it by
 - making sure all atoms can reach their allotted spot in a potential endpoint.
 
 ###example:
-```
+```js
 const jsa = require('jsatomix')
 const level = jsa.levelsets.get("katomic", "1")
 console.log(jsa.endpoints(level))
@@ -89,11 +100,11 @@ The current state can be interrogated with the following methods.
 
 - `endpoint()` returns the endpoint if the game has reached an endpoint or an empty string otherwise.
 
-- `toString()` returns a strings representing the current state of the arena.
+- `toString()` returns a string representing the current state of the arena.
 
-An instance of `gameObject can be created in one of two ways: from a `level` object or from a `solution` object.
+An instance of `gameObject` can be created in one of two ways: from a `level` object or from a `solution` object.
 
-```
+```js
 const jsa = require('jsatomix')
 
 const level = jsa.levelsets.get('katomic', '1')
@@ -102,10 +113,10 @@ const gameFromLevel = jsa.gameObject.from(level)
 const solution = jsa.solutions.all[0]
 const gameFromSolution = jsa.gameObject.from(solution)
 ```
-If a solution object is fed to the constructor, then the solutions `levelSet` and `level` properties are used to obtain a `level` object and the contents of the `history` property is fed to the game objects `move` method.
+If a solution object is fed to the constructor, then the solutions `levelSet` and `level` properties are used to obtain a `level` object and the contents of the `history` property is fed to the game objects `move()` method.
 
 Only those three properties are required so to initialise an object for a particular level do this:
-```
+```js
 const jsa = require('jsatomix')
 const game = jsa.gameObject.from({
   levelSet: 'katomic',

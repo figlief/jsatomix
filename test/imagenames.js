@@ -1,5 +1,5 @@
-var test = require('tape')
-var names = require('../lib/imagenames.js')
+const test = require('tape')
+const names = require('../lib/imagenames.js')
 
 test('imagenames-litmus', function (t) {
   t.plan(2)

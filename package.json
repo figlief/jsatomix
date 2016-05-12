@@ -4,7 +4,8 @@
   "description": "Tools for analysing and playing katomic/atomix type puzzles.",
   "main": "index.js",
   "scripts": {
-    "test": "tape test/*.js"
+    "test": "tape test/*.js",
+    "readme": "node dev/readme.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "extract-comments": "^0.10.1",
+    "marky-markdown": "^7.0.0",
     "tape": "^4.5.1"
   }
 }
