@@ -31,6 +31,7 @@
     "type-of": "^2.0.1"
   },
   "devDependencies": {
+    "extract-comments": "^0.10.1",
     "tape": "^4.5.1"
   }
 }
